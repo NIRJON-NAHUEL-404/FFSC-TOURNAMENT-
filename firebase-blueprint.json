@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "Team": {
+      "title": "Team",
+      "description": "A team in the tournament",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Team name" },
+        "points": { "type": "number", "description": "Total points" },
+        "matches": { "type": "number", "description": "Matches played" },
+        "wwcd": { "type": "number", "description": "Winner Winner Chicken Dinners" },
+        "kills": { "type": "number", "description": "Total kills" },
+        "rank": { "type": "number", "description": "Current rank" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "points", "matches", "wwcd", "kills"]
+    },
+    "Registration": {
+      "title": "Registration",
+      "description": "A team registration request",
+      "type": "object",
+      "properties": {
+        "teamName": { "type": "string" },
+        "leaderName": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "players": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "submittedAt": { "type": "string", "format": "date-time" },
+        "userEmail": { "type": "string" },
+        "userUid": { "type": "string" },
+        "isWinner": { "type": "boolean", "description": "Whether this team won the tournament" },
+        "logoUrl": { "type": "string", "description": "Team logo URL" }
+      },
+      "required": ["teamName", "leaderName", "whatsapp", "players", "status", "userUid"]
+    },
+    "Notice": {
+      "title": "Notice",
+      "description": "Admin announcements",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "createdAt"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global app settings",
+      "type": "object",
+      "properties": {
+        "timerEnd": { "type": "string", "format": "date-time", "description": "Tournament countdown end time" },
+        "youtubeUrl": { "type": "string", "description": "Live stream URL" }
+      }
+    }
+  },
+  "firestore": {
+    "/teams/{teamId}": {
+      "schema": "Team",
+      "description": "Leaderboard teams"
+    },
+    "/registrations/{regId}": {
+      "schema": "Registration",
+      "description": "Team registrations"
+    },
+    "/notices/{noticeId}": {
+      "schema": "Notice",
+      "description": "Admin notices"
+    },
+    "/settings/{settingId}": {
+      "schema": "Settings",
+      "description": "Global settings"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-fire-dark: #1a0505;
+  --color-fire-red: #8B0000;
+  --color-fire-orange: #FF4500;
+  --color-fire-yellow: #FFD700;
+  --font-esports: "Hind Siliguri", "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-fire-dark text-white font-esports antialiased;
+    background-image: radial-gradient(circle at 50% 50%, #3d0a0a 0%, #1a0505 100%);
+  }
+}
+
+@layer utilities {
+  .fire-glow {
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 69, 0, 0.5);
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    border-color: rgba(255, 215, 0, 0.6);
+  }
+  
+  .fire-border {
+    border: 1px solid rgba(255, 69, 0, 0.3);
+    box-shadow: inset 0 0 15px rgba(255, 69, 0, 0.1);
+  }
+
+  .scrolling-text {
+    white-space: nowrap;
+    animation: scroll 20s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+}
